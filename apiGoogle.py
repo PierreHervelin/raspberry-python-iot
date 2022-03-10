@@ -42,7 +42,7 @@ def login():
 
 def findOrCreateFolder(creds):
     page_token = None
-    drive_service = build('drive','V3',credentials=creds)
+    drive_service = build('drive','v3',credentials=creds)
 
     while True:
         response = drive_service.files().list(q="mimeType='application/vnd.google-apps.folder'",
@@ -69,9 +69,8 @@ def findOrCreateFolder(creds):
 
 #path a mettr en params
 def createFile(creds,name):
-    drive_service = build('drive','V3',credentials=creds)
-
     folderId = findOrCreateFolder(creds)
+    drive_service = build('drive','v3',credentials=creds)
     file_metadata = {
         'name': name,
         'parents': [folderId]
